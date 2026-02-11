@@ -651,7 +651,7 @@ function buildHTML(slotPickerHTML, generatedAt, slotCounts) {
             <p class="modal-subtitle" id="modalSubtitle"></p>
             <form id="bookingForm">
                 <label>Location of Meeting</label>
-                <input type="text" id="fieldLocation" placeholder="e.g., Zoom, Lincoln Elementary, Room 204">
+                <input type="text" id="fieldLocation" placeholder="e.g., Zoom, Office, Site">
 
                 <label>Specific Notes</label>
                 <textarea id="fieldNotes" placeholder="Anything you want to cover or that Josh should know?"></textarea>
