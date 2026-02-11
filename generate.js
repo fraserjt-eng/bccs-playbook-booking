@@ -56,7 +56,7 @@ const SESSION_TYPES = {
   },
   'deep-dive': {
     name: 'Deep Dive',
-    duration: 120,
+    duration: 90,
     buffer: 15,
     days: [2, 3, 4],
     startHour: 9, startMin: 0,
@@ -71,7 +71,7 @@ const DURATION_LABELS = {
   'quick-checkin': '15 min',
   'standard-checkin': '30 min',
   'working-session': '1 hour',
-  'deep-dive': '2 hours'
+  'deep-dive': '1.5 hours'
 };
 
 // --- Timezone helpers ---
@@ -594,7 +594,7 @@ function buildHTML(slotPickerHTML, generatedAt, slotCounts) {
         <div class="container">
             <div class="badge">BCCS Leadership</div>
             <h1>Playbook Support Sessions</h1>
-            <p>Book dedicated time with Josh Fraser to work through your Playbook questions, review progress, and plan next steps.</p>
+            <p>Book dedicated time to work through your Playbook questions, review progress, and plan next steps.</p>
         </div>
     </header>
 
@@ -622,7 +622,7 @@ function buildHTML(slotPickerHTML, generatedAt, slotCounts) {
                     <span class="btn btn-outline">Select Times</span>
                 </div>
                 <div class="session-card" data-target="deep-dive">
-                    <span class="duration">2 hours</span>
+                    <span class="duration">1.5 hours</span>
                     <h3>Deep Dive</h3>
                     <p>Comprehensive planning, complex problem-solving, or team facilitation for bigger initiatives.</p>
                     <span class="btn btn-outline">Select Times</span>
@@ -650,21 +650,11 @@ function buildHTML(slotPickerHTML, generatedAt, slotCounts) {
             <h3 id="modalTitle"></h3>
             <p class="modal-subtitle" id="modalSubtitle"></p>
             <form id="bookingForm">
-                <label>Playbook Area(s) <span class="required">*</span></label>
-                <input type="text" id="fieldPlaybook" placeholder="e.g., Teaching & Learning, Culture" required>
-                <div class="error-msg" id="errPlaybook">Please enter the Playbook area(s) you want to discuss.</div>
+                <label>Location of Meeting</label>
+                <input type="text" id="fieldLocation" placeholder="e.g., Zoom, Lincoln Elementary, Room 204">
 
-                <label>Building / Site <span class="required">*</span></label>
-                <input type="text" id="fieldBuilding" placeholder="e.g., Lincoln Elementary" required>
-                <div class="error-msg" id="errBuilding">Please enter your building or site.</div>
-
-                <div class="checkbox-row">
-                    <input type="checkbox" id="fieldFacilitator">
-                    <label for="fieldFacilitator">I need a facilitator for my staffing team</label>
-                </div>
-
-                <label>Notes (optional)</label>
-                <textarea id="fieldNotes" placeholder="Anything else Josh should know beforehand?"></textarea>
+                <label>Specific Notes</label>
+                <textarea id="fieldNotes" placeholder="Anything you want to cover or that Josh should know?"></textarea>
 
                 <div class="modal-actions">
                     <button type="button" class="btn btn-outline" id="modalCancel">Cancel</button>
@@ -686,7 +676,7 @@ function buildHTML(slotPickerHTML, generatedAt, slotCounts) {
                             <strong>Quick Check-in (15 min)</strong> - You have a specific question or need a quick status update.<br>
                             <strong>Standard Check-in (30 min)</strong> - You want to review progress, discuss next steps, or talk through a decision. This is the best default choice.<br>
                             <strong>Working Session (1 hour)</strong> - You need to actually build something out together, like drafting a plan or working through a process.<br>
-                            <strong>Deep Dive (2 hours)</strong> - You're tackling something complex that needs extended focus, or you want facilitation with your team.
+                            <strong>Deep Dive (1.5 hours)</strong> - You're tackling something complex that needs extended focus, or you want facilitation with your team.
                         </div>
                     </div>
                 </div>
@@ -776,11 +766,8 @@ function buildHTML(slotPickerHTML, generatedAt, slotCounts) {
                 modalTitle.textContent = 'Book: ' + selectedSlot.name;
                 modalSubtitle.textContent = selectedSlot.dateLong + ' at ' + selectedSlot.time;
                 modal.classList.add('open');
-                document.getElementById('fieldPlaybook').value = '';
-                document.getElementById('fieldBuilding').value = '';
-                document.getElementById('fieldFacilitator').checked = false;
+                document.getElementById('fieldLocation').value = '';
                 document.getElementById('fieldNotes').value = '';
-                document.querySelectorAll('.error-msg').forEach(function(e) { e.style.display = 'none'; });
             });
         });
 
@@ -794,31 +781,20 @@ function buildHTML(slotPickerHTML, generatedAt, slotCounts) {
 
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            var playbook = document.getElementById('fieldPlaybook').value.trim();
-            var building = document.getElementById('fieldBuilding').value.trim();
-            var facilitator = document.getElementById('fieldFacilitator').checked;
+            var location = document.getElementById('fieldLocation').value.trim();
             var notes = document.getElementById('fieldNotes').value.trim();
 
-            var valid = true;
-            if (!playbook) { document.getElementById('errPlaybook').style.display = 'block'; valid = false; }
-            else { document.getElementById('errPlaybook').style.display = 'none'; }
-            if (!building) { document.getElementById('errBuilding').style.display = 'block'; valid = false; }
-            else { document.getElementById('errBuilding').style.display = 'none'; }
-            if (!valid) return;
-
-            var description = 'Playbook Area: ' + playbook + '\\nBuilding/Site: ' + building;
-            if (facilitator) description += '\\nFacilitator Needed: Yes';
-            if (notes) description += '\\n\\nNotes: ' + notes;
-            description += '\\n\\n---\\nBooked via BCCS Playbook Support';
-            description += '\\nJosh will confirm within 1 business day.';
+            var description = '';
+            if (notes) description += notes;
+            description += (description ? '\\n\\n---\\n' : '') + 'Booked via BCCS Playbook Support';
 
             var params = new URLSearchParams({
                 action: 'TEMPLATE',
-                text: selectedSlot.name + ': Playbook Support (Josh Fraser)',
+                text: selectedSlot.name + ': Playbook Support',
                 dates: selectedSlot.start + '/' + selectedSlot.end,
                 ctz: 'America/New_York',
                 details: description,
-                location: 'Zoom (link will be shared)',
+                location: location || 'Zoom (link will be shared)',
                 add: 'jfraser@bccs286.org'
             });
 
