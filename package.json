@@ -1,0 +1,11 @@
+{
+  "name": "bccs-playbook-booking",
+  "private": true,
+  "scripts": {
+    "generate": "node generate.js",
+    "refresh": "node generate.js && git add index.html && git commit -m 'Refresh availability' && git push"
+  },
+  "dependencies": {
+    "ical-expander": "^3.1.0"
+  }
+}
