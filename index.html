@@ -118,52 +118,6 @@
             font-size: 1.05rem;
         }
 
-        /* How It Works */
-        .how-it-works {
-            background: var(--light-gray);
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .step {
-            text-align: center;
-            padding: 2rem 1.5rem;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            position: relative;
-        }
-
-        .step-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #7B68EE 0%, #5B4ACF 100%);
-            color: var(--white);
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            border-radius: 50%;
-            margin-bottom: 1rem;
-        }
-
-        .step h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .step p {
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
-
         /* Session Cards */
         .session-grid {
             display: grid;
@@ -254,27 +208,6 @@
         .btn-outline:hover {
             background: var(--purple);
             color: var(--white);
-        }
-
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(135deg, #7B68EE 0%, #5B4ACF 100%);
-            color: var(--white);
-            text-align: center;
-            padding: 3.5rem 1.5rem;
-        }
-
-        .cta h2 {
-            font-size: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.75rem;
-        }
-
-        .cta p {
-            opacity: 0.95;
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
         }
 
         /* FAQ Section */
@@ -409,34 +342,9 @@
         <div class="container">
             <div class="badge">BCCS Leadership</div>
             <h1>Playbook Support Sessions</h1>
-            <p>Book dedicated time with Jeff Fraser to work through your Playbook questions, review progress, and plan next steps.</p>
+            <p>Book dedicated time with Josh Fraser to work through your Playbook questions, review progress, and plan next steps.</p>
         </div>
     </header>
-
-    <!-- How It Works -->
-    <section class="how-it-works">
-        <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <p class="section-subtitle">Three simple steps to get the support you need.</p>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Choose a Session</h3>
-                    <p>Pick the session type that fits your needs &mdash; from a quick 15-minute check-in to a 2-hour deep dive.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Pick a Time</h3>
-                    <p>Select an available slot on the calendar that works with your schedule.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Get Confirmation</h3>
-                    <p>You'll receive a calendar invite with a meeting link. Show up and we'll get to work.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Session Types -->
     <section class="sessions">
@@ -481,14 +389,6 @@
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta">
-        <h2>Ready to Book?</h2>
-        <p>Not sure which session? The Standard Check-in (30 min) works for most needs.</p>
-        <!-- BOOKING URL: Replace href with your Standard Check-in Appointment Schedule URL -->
-        <a href="#standard-checkin-booking-url" class="btn btn-gold">Book a Standard Check-in</a>
-    </section>
-
     <!-- FAQ -->
     <section class="faq">
         <div class="container">
@@ -497,22 +397,13 @@
             <div class="faq-list">
 
                 <div class="faq-item">
-                    <button class="faq-question">What should I prepare before my session?</button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Have your Playbook open and know which section(s) you want to focus on. If you have specific data or documents to review, share them in the booking form or email them ahead of time. For Working Sessions and Deep Dives, a brief list of goals for the session helps us hit the ground running.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
                     <button class="faq-question">Which session type should I choose?</button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            <strong>Quick Check-in (15 min)</strong> &mdash; You have a specific question or need a quick status update.<br>
-                            <strong>Standard Check-in (30 min)</strong> &mdash; You want to review progress, discuss next steps, or talk through a decision. This is the best default choice.<br>
-                            <strong>Working Session (1 hour)</strong> &mdash; You need to actually build something out together, like drafting a plan or working through a process.<br>
-                            <strong>Deep Dive (2 hours)</strong> &mdash; You're tackling something complex that needs extended focus, or you want facilitation with your team.
+                            <strong>Quick Check-in (15 min)</strong> -You have a specific question or need a quick status update.<br>
+                            <strong>Standard Check-in (30 min)</strong> -You want to review progress, discuss next steps, or talk through a decision. This is the best default choice.<br>
+                            <strong>Working Session (1 hour)</strong> -You need to actually build something out together, like drafting a plan or working through a process.<br>
+                            <strong>Deep Dive (2 hours)</strong> -You're tackling something complex that needs extended focus, or you want facilitation with your team.
                         </div>
                     </div>
                 </div>
@@ -530,7 +421,7 @@
                     <button class="faq-question">What if I don't see any available times?</button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            Availability updates in real time. If nothing works this week, check back in a day or two. For urgent needs, email Jeff directly and we'll find a time.
+                            Email Josh directly at jfraser@bfrsd.org and he'll send you a specific calendar invite.
                         </div>
                     </div>
                 </div>
@@ -539,7 +430,7 @@
                     <button class="faq-question">Will this be virtual or in-person?</button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            Sessions default to Google Meet (link included in the calendar invite). If you'd prefer to meet in person, note that in the booking form and we'll arrange it.
+                            Sessions default to Zoom (link included in the calendar invite). If you'd prefer to meet in person, note that in the booking form and we'll arrange it.
                         </div>
                     </div>
                 </div>
