@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCCS Playbook Support Sessions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --purple: #7B68EE;
+            --dark-purple: #5B4ACF;
+            --gold: #FFD700;
+            --teal: #2A9D8F;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --gray: #6B7280;
+            --dark: #1F2937;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Oswald', sans-serif;
+            line-height: 1.2;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #7B68EE 0%, #5B4ACF 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+            position: relative;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Section styling */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--dark-purple);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--light-gray);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            position: relative;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #7B68EE 0%, #5B4ACF 100%);
+            color: var(--white);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .step p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Session Cards */
+        .session-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .session-card {
+            background: var(--white);
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .session-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--purple);
+            box-shadow: 0 8px 24px rgba(123, 104, 238, 0.15);
+        }
+
+        .session-card .duration {
+            display: inline-block;
+            background: linear-gradient(135deg, #7B68EE 0%, #5B4ACF 100%);
+            color: var(--white);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.3rem 0.9rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .session-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        .session-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-purple {
+            background: linear-gradient(135deg, #7B68EE 0%, #5B4ACF 100%);
+            color: var(--white);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--purple);
+            color: var(--purple);
+        }
+
+        .btn-outline:hover {
+            background: var(--purple);
+            color: var(--white);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #7B68EE 0%, #5B4ACF 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 3.5rem 1.5rem;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .cta p {
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--light-gray);
+        }
+
+        .faq-list {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 1.25rem 1.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.4rem;
+            color: var(--purple);
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-item.open .faq-question::after {
+            content: '\2212';
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-inner {
+            padding: 0 1.5rem 1.25rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+        }
+
+        footer .footer-brand {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        footer .teal-bar {
+            width: 60px;
+            height: 3px;
+            background: var(--teal);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.25rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .session-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="container">
+            <div class="badge">BCCS Leadership</div>
+            <h1>Playbook Support Sessions</h1>
+            <p>Book dedicated time with Jeff Fraser to work through your Playbook questions, review progress, and plan next steps.</p>
+        </div>
+    </header>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Three simple steps to get the support you need.</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose a Session</h3>
+                    <p>Pick the session type that fits your needs &mdash; from a quick 15-minute check-in to a 2-hour deep dive.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Pick a Time</h3>
+                    <p>Select an available slot on the calendar that works with your schedule.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Confirmation</h3>
+                    <p>You'll receive a calendar invite with a meeting link. Show up and we'll get to work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Session Types -->
+    <section class="sessions">
+        <div class="container">
+            <h2 class="section-title">Session Types</h2>
+            <p class="section-subtitle">Choose the session that best fits what you need right now.</p>
+            <div class="session-grid">
+
+                <div class="session-card">
+                    <span class="duration">15 min</span>
+                    <h3>Quick Check-in</h3>
+                    <p>Quick questions, status updates, or minor clarifications. Get in, get answers, get back to work.</p>
+                    <!-- BOOKING URL: Replace href with your Quick Check-in Appointment Schedule URL -->
+                    <a href="#quick-checkin-booking-url" class="btn btn-outline" data-session="quick-checkin">Book This</a>
+                </div>
+
+                <div class="session-card">
+                    <span class="duration">30 min</span>
+                    <h3>Standard Check-in</h3>
+                    <p>Regular progress check, discuss next steps, review recent data. The go-to session for most needs.</p>
+                    <!-- BOOKING URL: Replace href with your Standard Check-in Appointment Schedule URL -->
+                    <a href="#standard-checkin-booking-url" class="btn btn-outline" data-session="standard-checkin">Book This</a>
+                </div>
+
+                <div class="session-card">
+                    <span class="duration">1 hour</span>
+                    <h3>Working Session</h3>
+                    <p>Collaborative work on Playbook tasks, deeper problem-solving, or building out a plan together.</p>
+                    <!-- BOOKING URL: Replace href with your Working Session Appointment Schedule URL -->
+                    <a href="#working-session-booking-url" class="btn btn-outline" data-session="working-session">Book This</a>
+                </div>
+
+                <div class="session-card">
+                    <span class="duration">2 hours</span>
+                    <h3>Deep Dive</h3>
+                    <p>Comprehensive planning, complex problem-solving, or team facilitation for bigger initiatives.</p>
+                    <!-- BOOKING URL: Replace href with your Deep Dive Appointment Schedule URL -->
+                    <a href="#deep-dive-booking-url" class="btn btn-outline" data-session="deep-dive">Book This</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>Ready to Book?</h2>
+        <p>Not sure which session? The Standard Check-in (30 min) works for most needs.</p>
+        <!-- BOOKING URL: Replace href with your Standard Check-in Appointment Schedule URL -->
+        <a href="#standard-checkin-booking-url" class="btn btn-gold">Book a Standard Check-in</a>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Before You Book</h2>
+            <p class="section-subtitle">A few things that will help us make the most of our time.</p>
+            <div class="faq-list">
+
+                <div class="faq-item">
+                    <button class="faq-question">What should I prepare before my session?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Have your Playbook open and know which section(s) you want to focus on. If you have specific data or documents to review, share them in the booking form or email them ahead of time. For Working Sessions and Deep Dives, a brief list of goals for the session helps us hit the ground running.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Which session type should I choose?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <strong>Quick Check-in (15 min)</strong> &mdash; You have a specific question or need a quick status update.<br>
+                            <strong>Standard Check-in (30 min)</strong> &mdash; You want to review progress, discuss next steps, or talk through a decision. This is the best default choice.<br>
+                            <strong>Working Session (1 hour)</strong> &mdash; You need to actually build something out together, like drafting a plan or working through a process.<br>
+                            <strong>Deep Dive (2 hours)</strong> &mdash; You're tackling something complex that needs extended focus, or you want facilitation with your team.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Can I reschedule or cancel?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Yes. Use the link in your calendar invite to reschedule or cancel. Please give at least 4 hours notice for Quick and Standard sessions, 24 hours for Working Sessions, and 48 hours for Deep Dives so the time can be opened up for others.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">What if I don't see any available times?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Availability updates in real time. If nothing works this week, check back in a day or two. For urgent needs, email Jeff directly and we'll find a time.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Will this be virtual or in-person?</button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Sessions default to Google Meet (link included in the calendar invite). If you'd prefer to meet in person, note that in the booking form and we'll arrange it.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-brand">BCCS Playbook Support</div>
+            <p>Helping BCCS leaders move the Playbook forward, one session at a time.</p>
+            <div class="teal-bar"></div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var item = this.parentElement;
+                var isOpen = item.classList.contains('open');
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(function(el) {
+                    el.classList.remove('open');
+                });
+                // Toggle clicked
+                if (!isOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
