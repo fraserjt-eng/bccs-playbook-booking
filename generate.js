@@ -160,8 +160,13 @@ function easternDate(year, month, day, hour, minute) {
 }
 
 function toGoogleDateStr(date) {
-  const p = toEasternParts(date);
-  return `${p.year}${String(p.month).padStart(2, '0')}${String(p.day).padStart(2, '0')}T${String(p.hour).padStart(2, '0')}${String(p.minute).padStart(2, '0')}00`;
+  // Use UTC with Z suffix -- unambiguous, no timezone guessing
+  const y = date.getUTCFullYear();
+  const m = String(date.getUTCMonth() + 1).padStart(2, '0');
+  const d = String(date.getUTCDate()).padStart(2, '0');
+  const h = String(date.getUTCHours()).padStart(2, '0');
+  const min = String(date.getUTCMinutes()).padStart(2, '0');
+  return `${y}${m}${d}T${h}${min}00Z`;
 }
 
 // --- Pre-filter iCal data to reduce memory usage ---
