@@ -1,0 +1,32 @@
+name: Refresh Availability
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'  # Every 4 hours
+  workflow_dispatch: {}      # Manual trigger from GitHub UI
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - run: npm ci
+
+      - name: Generate availability
+        env:
+          ICAL_URL: ${{ secrets.ICAL_URL }}
+        run: node generate.js
+
+      - name: Commit and push if changed
+        run: |
+          git diff --quiet index.html && echo "No changes" && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Refresh availability (automated)"
+          git push
